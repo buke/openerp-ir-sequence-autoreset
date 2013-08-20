@@ -81,6 +81,11 @@ msgid "ir.sequence"
 msgstr "ir.sequence"
 
 #. module: ir_sequence_autoreset
+#: selection:ir.sequence,reset_period:0
+msgid "Every Week"
+msgstr "每周"
+
+#. module: ir_sequence_autoreset
 #: model:ir.model.fields,field_description:ir_sequence_autoreset.field_ir_sequence_auto_reset
 #: view:ir.sequence:0
 #: field:ir.sequence,auto_reset:0

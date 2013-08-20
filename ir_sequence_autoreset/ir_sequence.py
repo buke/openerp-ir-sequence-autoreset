@@ -28,7 +28,7 @@ class ir_sequence(osv.osv):
     _columns = {
         'auto_reset': fields.boolean('Auto Reset'),
         'reset_period': fields.selection(
-            [('year', 'Every Year'), ('month', 'Every Month'), ('day', 'Every Day'), ('h24', 'Every Hour'), ('min', 'Every Minute'), ('sec', 'Every Second')],
+            [('year', 'Every Year'), ('month', 'Every Month'), ('woy', 'Every Week'), ('day', 'Every Day'), ('h24', 'Every Hour'), ('min', 'Every Minute'), ('sec', 'Every Second')],
             'Reset Period', required=True),
         'reset_time': fields.char('Name', size=64, help=""),
         'reset_init_number': fields.integer('Reset Number', required=True, help="Reset number of this sequence"),
@@ -52,7 +52,7 @@ class ir_sequence(osv.osv):
         preferred_sequences = [s for s in sequences if s['company_id'] and s['company_id'][0] == force_company ]
         seq = preferred_sequences[0] if preferred_sequences else sequences[0]
         if seq['implementation'] == 'standard':
-            current_time = self._interpolation_dict().get(seq['reset_period'])
+            current_time =':'.join([seq['reset_period'], self._interpolation_dict().get(seq['reset_period'])])
             if seq['auto_reset'] and current_time != seq['reset_time']:
                 cr.execute("UPDATE ir_sequence SET reset_time=%s WHERE id=%s ", (current_time,seq['id']))
                 self._alter_sequence(cr, seq['id'], seq['number_increment'], seq['reset_init_number'])
