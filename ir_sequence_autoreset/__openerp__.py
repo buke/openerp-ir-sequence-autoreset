@@ -26,7 +26,9 @@
 
 Auto reset sequence by year,month,day
 
-功能：自动重置序列编号
+Note: ONLY sequence implementation is standard mode can be reset.
+
+功能：自动重置序列编号 (注：仅当序列实现方法为标准时，才允许自动重置)
 
 如果您觉得好用，请进入下面的网址，付费支持作者 ~
 
